@@ -2,7 +2,7 @@
   "id": "display-rotate",
   "title": "Display Rotate",
   "description": "Ruota di 90° la vista del client usato come display da tavolo quando la scena è verticale. Le coordinate della scena non cambiano: giocatori, GM e companion non vedono differenze.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [{ "name": "Francesco Nguyen" }],
   "compatibility": { "minimum": "14", "verified": "14" },
   "esmodules": ["scripts/display-rotate.mjs"],

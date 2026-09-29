@@ -31,6 +31,19 @@ function patchWindowSize() {
   });
 }
 
+/**
+ * Il controllo di risoluzione di Foundry (ClientIssues, 1024×768 minimo) legge le misure scambiate e con la vista
+ * girata dà l'avviso a vuoto: lo si scarta solo mentre la rotazione è di 90°.
+ */
+function patchResolutionWarning() {
+  const proto = foundry.applications.ui.Notifications.prototype;
+  const notify = proto.notify;
+  proto.notify = function(message, ...args) {
+    if ( (Math.abs(current) === 90) && (typeof message === "string") && message.startsWith("ERROR.RESOLUTION.") ) return;
+    return notify.call(this, message, ...args);
+  };
+}
+
 function isDisplayClient() {
   const name = (setting("displayUser") || "").trim().toLowerCase();
   return !!name && game.user?.name.trim().toLowerCase() === name;
@@ -95,6 +108,7 @@ Hooks.once("init", () => {
     onChange: refresh
   });
   patchWindowSize();
+  patchResolutionWarning();
 });
 
 Hooks.once("ready", () => {
