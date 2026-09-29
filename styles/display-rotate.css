@@ -1,0 +1,26 @@
+/* Rotazione del client display: si ruota tutto il body, le misure di finestra sono scambiate dallo script. */
+html.dr-rot {
+  overflow: hidden !important;
+}
+html.dr-rot body {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform-origin: 0 0 !important;
+}
+html.dr-r90 body,
+html.dr-r-90 body {
+  width: 100vh !important;
+  height: 100vw !important;
+}
+html.dr-r90 body {
+  transform: translateX(100vw) rotate(90deg) !important;
+}
+html.dr-r-90 body {
+  transform: translateY(100vh) rotate(-90deg) !important;
+}
+html.dr-r180 body {
+  width: 100vw !important;
+  height: 100vh !important;
+  transform: translate(100vw, 100vh) rotate(180deg) !important;
+}
