@@ -111,8 +111,28 @@ Hooks.once("init", () => {
   patchResolutionWarning();
 });
 
+/**
+ * Foundry tiene l'audio bloccato finché non vede un clic o un tasto, che sul display non arriva mai.
+ * Se il browser permette l'autoplay (Helium lanciato con --autoplay-policy=no-user-gesture-required)
+ * si simula il primo gesto; altrimenti resta il comportamento normale.
+ */
+async function unlockAudio() {
+  if ( !isDisplayClient() || !game.audio?.locked ) return;
+  const ctx = new AudioContext();
+  await Promise.race([ctx.resume(), new Promise(r => setTimeout(r, 1000))]);
+  const allowed = ctx.state === "running";
+  await ctx.close();
+  if ( !allowed ) {
+    console.log(`${ID} | autoplay non permesso dal browser: l'audio parte al primo clic`);
+    return;
+  }
+  document.dispatchEvent(new MouseEvent("auxclick"));
+  console.log(`${ID} | audio sbloccato senza clic`);
+}
+
 Hooks.once("ready", () => {
   game.modules.get(ID).api = { rotation: () => current, wantedRotation, refresh };
+  unlockAudio();
 });
 
 // Prima del disegno della scena: il resize finale di Foundry e l'inquadratura di Monk's usano già le misure girate.
