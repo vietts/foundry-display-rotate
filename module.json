@@ -2,9 +2,26 @@
   "id": "display-rotate",
   "title": "Display Rotate",
   "description": "Ruota di 90° la vista del client usato come display da tavolo quando la scena è verticale. Le coordinate della scena non cambiano: giocatori, GM e companion non vedono differenze.",
-  "version": "0.1.2",
-  "authors": [{ "name": "Francesco Nguyen" }],
-  "compatibility": { "minimum": "14", "verified": "14" },
-  "esmodules": ["scripts/display-rotate.mjs"],
-  "styles": ["styles/display-rotate.css"]
+  "version": "0.1.3",
+  "authors": [
+    {
+      "name": "Francesco Nguyen"
+    }
+  ],
+  "url": "https://github.com/vietts/foundry-display-rotate",
+  "manifest": "https://github.com/vietts/foundry-display-rotate/releases/latest/download/module.json",
+  "download": "https://github.com/vietts/foundry-display-rotate/releases/latest/download/module.zip",
+  "bugs": "https://github.com/vietts/foundry-display-rotate/issues",
+  "readme": "https://github.com/vietts/foundry-display-rotate#readme",
+  "license": "MIT",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "esmodules": [
+    "scripts/display-rotate.mjs"
+  ],
+  "styles": [
+    "styles/display-rotate.css"
+  ]
 }
